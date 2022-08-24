@@ -35,7 +35,11 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
-    public List<Task> getTasksByTopicId(Long topicId){
-        return taskRepository.findAllByTopicId(topicId);
+    public List<Task> getActiveTasks() {
+        return taskRepository.findTasksByDoneFalse();
+    }
+
+    public List<Task> getCompletedTasks() {
+        return taskRepository.findTasksByDoneTrue();
     }
 }

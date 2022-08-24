@@ -6,13 +6,14 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
-public class Task {
+public class Task implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -23,10 +24,6 @@ public class Task {
     private LocalDate deadline;
 
     private boolean isDone;
-
-    @ManyToOne
-    @JoinColumn(name="topic_id", nullable=false)
-    private Topic topic;
 
     public Task(String description, LocalDate deadline) {
         this.description = description;
