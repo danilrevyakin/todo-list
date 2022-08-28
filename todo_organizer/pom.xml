@@ -5,6 +5,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>backend</module>
+        <module>frontend</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -24,12 +25,14 @@
 
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
 </project>

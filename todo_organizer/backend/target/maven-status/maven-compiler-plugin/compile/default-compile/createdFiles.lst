@@ -1,6 +1,0 @@
-com/example/TodoOrganizerApplication.class
-com/example/service/TaskService.class
-com/example/entity/Task.class
-com/example/controller/TaskController.class
-com/example/repo/TaskRepository.class
-com/example/entity/State.class

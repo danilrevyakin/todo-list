@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/todo_organizer/backend/backend.iml" filepath="$PROJECT_DIR$/todo_organizer/backend/backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/todo_organizer/frontend/frontend.iml" filepath="$PROJECT_DIR$/todo_organizer/frontend/frontend.iml" />
       <module fileurl="file://$PROJECT_DIR$/todo_organizer/todo_organizer.iml" filepath="$PROJECT_DIR$/todo_organizer/todo_organizer.iml" />
     </modules>
   </component>
