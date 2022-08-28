@@ -1,0 +1,109 @@
+@import 'https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css';
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css';
+@import url('https://css.gg/sand-clock.css');
+
+.gradient-custom {
+  background: radial-gradient(50% 123.47% at 50% 50%, #00ff94 0%, #720059 100%),
+  linear-gradient(121.28deg, #669600 0%, #ff0000 100%),
+  linear-gradient(360deg, #0029ff 0%, #8fff00 100%),
+  radial-gradient(100% 164.72% at 100% 100%, #6100ff 0%, #00ff57 100%),
+  radial-gradient(100% 148.07% at 0% 0%, #fff500 0%, #51d500 100%);
+  background-blend-mode: screen, color-dodge, overlay, difference, normal;
+}
+
+.card-body{
+  max-height: 600px;
+}
+
+.nav-item:hover, .nav-item:focus, .nav-item:active {
+  color: #999;
+  text-decoration: none;
+}
+
+.nav-item {
+  text-decoration: none;
+  transition: color 0.1s, background-color 0.1s;
+}
+
+.nav-item {
+  position: relative;
+  display: inline;
+  padding: 16px;
+  margin: 0 12px;
+  letter-spacing: 1px;
+  font-size: 14px;
+  line-height: 16px;
+  transition: color 0.1s,background-color 0.1s,padding 0.2s ease-in;
+  color: #000;
+}
+
+.nav-item::before {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background-color: #000;
+  transform-origin: right top;
+  transform: scale(0, 1);
+  transition: color 0.1s,transform 0.2s ease-out;
+}
+
+.nav-item:active::before {
+  background-color: #000;
+}
+
+.nav-item:hover::before, .nav-item:focus::before {
+  transform-origin: left top;
+  transform: scale(1, 1);
+}
+
+.content-box{
+  background-color: #E6E6FA;
+  color: #6495ED;
+  padding: 9px;
+  border: solid 1px #6495ED;
+  margin: 20px;
+  border-radius: 5px;
+  height: 40px;
+}
+
+/* Style the tab content */
+.tab-content {
+  -webkit-animation: fadeEffect 1s;
+  animation: fadeEffect 1s;
+}
+
+.scrollable-content{
+  margin-top: 10px;
+  max-height: 450px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Fade in tabs */
+@-webkit-keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.button-container > button {
+  height: 40px;
+  width: 90px;
+  margin: 3px;
+}
+
+.alert alert-info{
+  padding: 100px;
+  margin-top: 100px;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

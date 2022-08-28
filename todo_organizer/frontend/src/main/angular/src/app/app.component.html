@@ -1,0 +1,148 @@
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100" id="main-content">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+
+        <div class="card">
+          <div class="card-body">
+            <h1 style="font-size: 30px">Tasks <button type="submit" class="btn btn-info ms-2" (click)="onOpenModal(null, 'add')">+</button></h1>
+
+            <!-- Tabs navs -->
+<!--            <a *ngFor="let pages of navigationArray"-->
+<!--               href="tasks{{pages?.menuLink}}"-->
+<!--               class="nav-item"-->
+<!--               (click)="getSomeTasks(pages.menuName)">{{pages?.menuName}}</a>-->
+            <!-- Tabs navs -->
+
+            <!-- Tabs content -->
+            <div class="scrollable-content">
+              <div *ngFor="let task of tasks" class="tab-content" id="ex1-content">
+                <div class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel"
+                     aria-labelledby="ex1-tab-1">
+                  <ul class="list-group mb-0">
+                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 mb-2 rounded"
+                        style="background-color: #f4f6f7; margin-top: 10px; padding: 5px" >
+
+                      <div class="col-md-5" style="font-size: 18px; margin-top: 10px">
+                        <mat-checkbox [checked]="task?.done" (change)="onChangeCheckbox(task)">{{task?.description}}</mat-checkbox>
+                      </div>
+
+                      <div class="content-box">
+                        <p><i class="fa fa-hourglass" aria-hidden="true"></i>  {{task?.deadline}}</p>
+                      </div>
+
+                      <div class="button-container">
+                        <button (click)="onOpenModal(task, 'edit')" type="button" class="btn btn-outline-warning btn-rounded" data-mdb-ripple-color="dark" ><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+                        <button (click)="onOpenModal(task, 'delete')" type="button" class="btn btn-outline-danger btn-rounded" data-mdb-ripple-color="dark"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+                      </div>
+
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div *ngIf="tasks?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+
+                <div class="alert alert-info" role="alert" style="margin-top: 10px">
+                  <h4 class="alert-heading">NO TASKS!</h4>
+                  <p>No tasks were found.</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Add Task Modal -->
+    <div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addTaskModalLabel">Add Task</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form #addForm="ngForm" (ngSubmit)="onAddTask(addForm)">
+              <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" ngModel name="description" class="form-control" id="descriptiond" placeholder="Description" required>
+              </div>
+              <div class="form-group">
+                <label for="deadline">Deadline</label>
+                <input type="date" ngModel name="deadline" class="form-control" id="deadlined" placeholder="Deadline" required>
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="add-task-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" aria-labelledby="employeeEditModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="updateTaskModalLabel">Edit Task "{{editTask?.description}}"</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form #editForm="ngForm">
+              <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" ngModel="{{editTask?.description}}" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description">
+              </div>
+
+              <input type="hidden" ngModel="{{editTask?.id}}" name="id" class="form-control" id="id" placeholder="id">
+
+              <div class="form-group">
+                <label for="deadline">Deadline</label>
+                <input type="date" ngModel="{{editTask?.deadline}}" name="deadline" class="form-control" id="deadline" aria-describedby="emailHelp" placeholder="Deadline">
+              </div>
+
+              <input type="hidden" ngModel="{{editTask?.done}}" name="done" class="form-control" id="done" placeholder="is Done">
+
+              <div class="modal-footer">
+                <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                <button (click)="onUpdateTask(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete Modal -->
+    <div class="modal fade" id="deleteTaskModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModelLabel">Delete Task</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to delete task <q>{{deleteTask?.description}}</q>?</p>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+              <button (click)="onDeleteTask(deleteTask?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
